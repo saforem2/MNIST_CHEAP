@@ -43,7 +43,7 @@ def main(argv=None):
     print 'Training the neural network...'
 
     stats = net.train(X_train, y_train, X_val, y_val,
-                        num_iters=1000, batch_size=200,
+                        num_iters=2000, batch_size=200,
                         learning_rate=0.5, learning_rate_decay=0.95,
                         reg = 1e-4, verbose=True)
 
