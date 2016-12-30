@@ -71,34 +71,25 @@ class TwoLayerNet(object):
     scores = None
     num_examples = X.shape[0]
 
-
     hidden_layer = np.maximum(0, np.dot(X, W1) + b1)
 
     scores = np.dot(hidden_layer,W2) + b2
 
-
-
-
     # If the targets are not given then jump out, we're done
-
     if y is None:
       return scores
 
     # Compute the loss
     loss = None
+
+    # softmax output classifier
     probs = np.exp(scores)/np.sum(np.exp(scores), axis=1, keepdims=True)
-
     true_class_prob = np.choose(y, probs.T)
-
-
-
     loss = -np.log(true_class_prob)
-
     loss = np.average(loss)
-
     reg_loss = 0.5 * reg * np.sum(W1 * W1) + 0.5 * reg * np.sum(W2 * W2)
+    # loss = data_loss + reg_loss
     loss +=reg_loss
-
 
     # Backward pass: compute gradients
     grads = {}
@@ -208,8 +199,12 @@ class TwoLayerNet(object):
     W2, b2 = self.params['W2'], self.params['b2']
     hidden_output = np.maximum(0, np.dot(X, W1) + b1)
     scores = np.dot(hidden_output, W2) + b2
-    y_pred = np.argmax(scores, axis = 1)
-
+    try:
+        # to run over all test_data
+        y_pred = np.argmax(scores, axis = 1)
+    except ValueError:
+        # to run for a single test image
+        y_pred = np.argmax(scores)
     return y_pred
 
 
