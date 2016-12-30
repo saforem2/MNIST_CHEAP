@@ -1,17 +1,13 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-class TwoLayerNet(object):
+class NeuralNetwork(object):
     """
-    A two-layer fully-connected neural network. The net has an input dimension of
+    A simple fully-connected neural network. The net has an input dimension of
     N, a hidden layer dimension of H, and performs classification over C classes.
     We train the network with a softmax loss function and L2 regularization on the
     weight matrices. The network uses a ReLU nonlinearity after the first fully
     connected layer.
-
-    In other words, the network has the following architecture:
-
-    input - fully connected layer - ReLU - fully connected layer - softmax
 
     The outputs of the second fully-connected layer are the scores for each class.
     """
@@ -40,8 +36,7 @@ class TwoLayerNet(object):
 
     def loss(self, X, y=None, reg=0.0):
         """
-        Compute the loss and gradients for a two layer fully connected neural
-        network.
+        Compute the loss and gradients for a fully connected neural network.
 
          Inputs:
         - X: Input data of shape (N, D). Each X[i] is a training sample.
@@ -89,7 +84,7 @@ class TwoLayerNet(object):
         loss = -np.log(true_class_prob)
         loss = np.average(loss)
         reg_loss = 0.5 * reg * np.sum(W1 * W1) + 0.5 * reg * np.sum(W2 * W2)
-        # loss = data_loss + reg_loss
+        # add the contribution from the regularization loss
         loss +=reg_loss
 
         # Backward pass: compute gradients
@@ -181,7 +176,7 @@ class TwoLayerNet(object):
 
     def predict(self, X):
         """
-        Use the trained weights of this two-layer network to predict labels for
+        Use the trained weights of this network to predict labels for
         data points. For each data point we predict scores for each of the C
         classes, and assign each data point to the class with the highest score.
 

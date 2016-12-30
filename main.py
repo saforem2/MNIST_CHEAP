@@ -2,7 +2,7 @@ import sys
 import getopt
 import numpy as np
 import matplotlib.pyplot as plt
-from neural_net import TwoLayerNet
+from neural_net import NeuralNetwork
 import cPickle, gzip
 
 
@@ -37,7 +37,7 @@ def main(argv=None):
     num_classes = 10        # number of classes: 0, 1, ..., 9
 
     # initialize the network
-    net = TwoLayerNet(input_size, hidden_size, num_classes)
+    net = NeuralNetwork(input_size, hidden_size, num_classes)
 
     # train the network
     print 'Training the neural network...'
