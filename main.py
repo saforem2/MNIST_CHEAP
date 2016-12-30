@@ -6,7 +6,8 @@ from neural_net import TwoLayerNet
 import cPickle, gzip
 
 
-def main(*argv):
+
+def main(argv=None):
     # Load the dataset
     try:
         print 'Loading the dataset...'

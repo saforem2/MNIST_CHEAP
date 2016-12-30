@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+def sigmoid(x):
+    return 1./(1+np.exp(-x))
 
 class TwoLayerNet(object):
   """
@@ -71,7 +73,9 @@ class TwoLayerNet(object):
     scores = None
     num_examples = X.shape[0]
 
+    # ReLU activation
     hidden_layer = np.maximum(0, np.dot(X, W1) + b1)
+
 
     scores = np.dot(hidden_layer,W2) + b2
 
@@ -197,7 +201,11 @@ class TwoLayerNet(object):
 
     W1, b1 = self.params['W1'], self.params['b1']
     W2, b2 = self.params['W2'], self.params['b2']
+
+    # Relu activation
     hidden_output = np.maximum(0, np.dot(X, W1) + b1)
+
+
     scores = np.dot(hidden_output, W2) + b2
     try:
         # to run over all test_data
